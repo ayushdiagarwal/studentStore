@@ -62,4 +62,119 @@ app/
 ├── schema/
 │   └── product.py
 └── main.py
-``` 
+```
+
+## Interaction between user and seller.
+- **Anonymous Listings**: No seller contact info shown initially.
+- **Contact Reveal Flow**: Buyers send a request to the seller; seller approves before sharing contact.
+- **Request Management**: Sellers can accept or decline requests.
+- **Buyer Dashboard**: Buyers can see status of their requests and view contact info if approved.
+
+
+## 🚀 TODO List
+
+### �� **Authentication & User Management (HIGH PRIORITY)**
+- [ ] Implement user registration and login system
+- [ ] Add JWT token authentication
+- [ ] Create user profiles with student verification
+- [ ] Add role-based access control (student, admin)
+- [ ] Implement password reset functionality
+- [ ] Add email verification for new accounts
+- [ ] Create user dashboard/profile page
+
+### 👥 **User Features (HIGH PRIORITY)**
+- [ ] User profile management (edit profile, upload avatar)
+- [ ] User verification (student ID, email verification)
+- [ ] User blocking/reporting system
+- [ ] User activity history (products viewed, purchased, sold)
+
+### 🛍️ **Product Management (MEDIUM PRIORITY)**
+- [ ] Product search and filtering (by category, price, location, tags)
+- [ ] Also user to add multiples images while uploading a product.
+- [ ] Product sorting (by date, price, popularity)
+- [ ] Product favorites/wishlist functionality
+- [ ] Product status tracking (available, reserved, sold)
+- [ ] Product analytics (views, favorites, inquiries)
+
+### 🔍 **Search & Discovery (MEDIUM PRIORITY)**
+- [ ] Advanced search with filters (price range, location radius, category)
+- [ ] fuzzy search
+- [ ] Search suggestions and autocomplete
+- [ ] Personalized product recommendations
+- [ ] Trending products algorithm
+- [ ] Search analytics and insights
+
+### 📱 **Frontend Improvements (MEDIUM PRIORITY)**
+- [ ] Responsive design for mobile devices
+- [ ] Dark mode theme
+- [ ] Product image gallery with zoom
+- [ ] Infinite scroll for product lists
+- [ ] Advanced filtering UI components
+
+### 💬 **Communication & Messaging (LOW PRIORITY)**
+- [ ] Real-time chat between buyers and sellers
+- [ ] Product inquiry system
+- [ ] Notification system (email, push notifications)
+- [ ] Message history and archiving
+- [ ] Chat moderation and spam protection 
+
+### 📊 **Analytics & Reporting (LOW PRIORITY)**
+- [ ] Admin dashboard with analytics
+- [ ] Sales and revenue reports
+- [ ] User behavior analytics
+- [ ] Product performance metrics
+- [ ] Export functionality for reports
+- [ ] Real-time statistics
+
+### 🔒 **Security & Performance (HIGH PRIORITY)**
+- [ ] Rate limiting and API throttling
+- [ ] Input validation and sanitization
+- [ ] SQL injection protection
+- [ ] XSS protection
+- [ ] CORS configuration optimization
+- [ ] API versioning strategy
+- [ ] Caching implementation (Redis)
+- [ ] Database indexing optimization
+
+### 🚀 **Deployment & DevOps (MEDIUM PRIORITY)**
+- [ ] Docker containerization
+- [ ] CI/CD pipeline setup
+- [ ] Environment configuration management
+- [ ] Monitoring and logging (Prometheus, Grafana)
+- [ ] Backup and recovery procedures
+- [ ] Load balancing configuration
+- [ ] SSL certificate setup
+
+### 🧪 **Testing & Quality (LOW PRIORITY)**
+- [ ] Unit tests for all endpoints
+- [ ] Integration tests
+- [ ] API endpoint testing
+- [ ] Frontend component testing
+- [ ] Performance testing
+- [ ] Security testing
+- [ ] Automated testing pipeline
+
+### 📚 **Documentation & Onboarding (LOW PRIORITY)**
+- [ ] API documentation with examples
+- [ ] User manual and tutorials
+- [ ] Developer setup guide
+- [ ] Deployment guide
+- [ ] Troubleshooting guide
+- [ ] FAQ section
+
+---
+
+**Current Implementation Status:**
+- ✅ Basic product CRUD operations
+- ✅ Image upload and compression
+- ✅ Cloudinary integration
+- ✅ Basic frontend with React + TypeScript
+- ✅ Product listing and creation forms
+- ✅ MongoDB integration with Beanie ODM
+
+**Next Steps:**
+1. **Start with Authentication** - This is foundational for user-specific features
+2. **Implement User Management** - Essential for personalization
+3. **Add Search & Filtering** - Improves user experience significantly
+4. **Enhance Frontend** - Better UI/UX and mobile responsiveness
+5. **Add Security Features** - Protect against common vulnerabilities

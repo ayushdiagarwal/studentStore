@@ -1,6 +1,6 @@
 import type { Product, CreateProductData } from '../types/product';
 
-const API_BASE_URL = 'http://192.168.31.199:8000/api/v1';
+const API_BASE_URL = 'http://172.16.220.47:8002/api/v1';
 // const API_BASE_URL = 'http://localhost:8000/api/v1';
 
 export const createProduct = async (productData: CreateProductData): Promise<Product> => {
