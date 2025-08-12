@@ -2,7 +2,8 @@
 import motor.motor_asyncio
 from beanie import init_beanie
 from app.core.config import settings
-from app.models.product import Product # We will create this model next
+from app.models.product import Product
+from app.models.user import User
 
 async def init_db():
     """
@@ -12,6 +13,6 @@ async def init_db():
         settings.DATABASE_URL
     )
     
-    # Initialize Beanie with the Product document model
-    await init_beanie(database=client.get_default_database(), document_models=[Product])
+    # Initialize Beanie with the Product and User document models
+    await init_beanie(database=client.get_default_database(), document_models=[Product, User])
     print("Database connection initialized...")

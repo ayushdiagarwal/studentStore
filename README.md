@@ -44,7 +44,6 @@ Once the server is running, you can access:
 - `PUT /api/v1/products/{id}` - Update a product
 - `DELETE /api/v1/products/{id}` - Delete a product
 - `PATCH /api/v1/products/{id}/sold` - Mark product as sold
-
 ## Project Structure
 
 ```
@@ -78,19 +77,10 @@ app/
 - [ ] Add JWT token authentication
 - [ ] Create user profiles with student verification
 - [ ] Add role-based access control (student, admin)
-- [ ] Implement password reset functionality
-- [ ] Add email verification for new accounts
-- [ ] Create user dashboard/profile page
-
-### 👥 **User Features (HIGH PRIORITY)**
-- [ ] User profile management (edit profile, upload avatar)
-- [ ] User verification (student ID, email verification)
-- [ ] User blocking/reporting system
-- [ ] User activity history (products viewed, purchased, sold)
 
 ### 🛍️ **Product Management (MEDIUM PRIORITY)**
 - [ ] Product search and filtering (by category, price, location, tags)
-- [ ] Also user to add multiples images while uploading a product.
+- [ ] Allow user to add multiples images while uploading a product.
 - [ ] Product sorting (by date, price, popularity)
 - [ ] Product favorites/wishlist functionality
 - [ ] Product status tracking (available, reserved, sold)
@@ -120,25 +110,18 @@ app/
 
 ### 📊 **Analytics & Reporting (LOW PRIORITY)**
 - [ ] Admin dashboard with analytics
-- [ ] Sales and revenue reports
-- [ ] User behavior analytics
-- [ ] Product performance metrics
-- [ ] Export functionality for reports
 - [ ] Real-time statistics
 
 ### 🔒 **Security & Performance (HIGH PRIORITY)**
-- [ ] Rate limiting and API throttling
 - [ ] Input validation and sanitization
-- [ ] SQL injection protection
 - [ ] XSS protection
 - [ ] CORS configuration optimization
-- [ ] API versioning strategy
-- [ ] Caching implementation (Redis)
 - [ ] Database indexing optimization
 
-### 🚀 **Deployment & DevOps (MEDIUM PRIORITY)**
+### 🚀 **Deployment & DevOps (LOW PRIORITY)**
 - [ ] Docker containerization
 - [ ] CI/CD pipeline setup
+- [ ] Caching implementation (Redis)
 - [ ] Environment configuration management
 - [ ] Monitoring and logging (Prometheus, Grafana)
 - [ ] Backup and recovery procedures
