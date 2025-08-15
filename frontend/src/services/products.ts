@@ -1,7 +1,6 @@
 import type { Product, CreateProductData } from '../types/product';
 
-const API_BASE_URL = 'http://172.16.220.47:8002/api/v1';
-// const API_BASE_URL = 'http://localhost:8000/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8002/api/v1';
 
 export const createProduct = async (productData: CreateProductData): Promise<Product> => {
   const formData = new FormData();

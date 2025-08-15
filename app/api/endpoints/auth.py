@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, status, Response
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.responses import RedirectResponse
-from app.schema.auth import GoogleAuthRequest, GoogleAuthCallback, TokenResponse, UserResponse
+from app.schema.auth import GoogleAuthRequest, GoogleAuthCallback, TokenResponse, UserResponse, UserUpdate
 from app.core.auth import (
     get_google_auth_url,
     exchange_code_for_token,
@@ -125,6 +125,8 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
             email=user.email,
             name=user.name,
             profile_picture=user.profile_picture,
+            gender=user.gender,
+            hostel=user.hostel,
             is_verified=user.is_verified,
             created_at=user.created_at
         )
@@ -135,6 +137,62 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to get user info: {str(e)}"
+        )
+
+@router.patch("/me", response_model=UserResponse)
+async def update_current_user(update: UserUpdate, credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """
+    Update current authenticated user's profile (gender/hostel)
+    """
+    try:
+        token = credentials.credentials
+        payload = verify_token(token)
+        if not payload:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        user_id = payload.get("sub")
+        if not user_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token payload",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        user = await User.get(user_id)
+        if not user:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+        dirty = False
+        if update.gender is not None:
+            user.gender = update.gender
+            dirty = True
+        if update.hostel is not None:
+            user.hostel = update.hostel
+            dirty = True
+
+        if dirty:
+            await user.update_timestamp()
+
+        return UserResponse(
+            id=str(user.id),
+            email=user.email,
+            name=user.name,
+            profile_picture=user.profile_picture,
+            gender=user.gender,
+            hostel=user.hostel,
+            is_verified=user.is_verified,
+            created_at=user.created_at,
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to update user info: {str(e)}"
         )
 
 # logout is simply handled by the frontend.

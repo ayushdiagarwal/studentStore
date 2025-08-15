@@ -24,6 +24,8 @@ class UserResponse(BaseModel):
     email: EmailStr
     name: str
     profile_picture: Optional[str] = None
+    gender: Optional[str] = None
+    hostel: Optional[str] = None
     is_verified: bool
     created_at: datetime
     
@@ -37,6 +39,11 @@ class UserCreate(BaseModel):
     profile_picture: Optional[str] = None
     oauth_provider: str = "google"
     oauth_id: str
+
+class UserUpdate(BaseModel):
+    """Schema for updating user profile fields"""
+    gender: Optional[str] = None
+    hostel: Optional[str] = None
 
 # Update forward references
 TokenResponse.model_rebuild()

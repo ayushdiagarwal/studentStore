@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import { getProducts } from '../services/products';
 import type { Product } from '../types/product';
 
@@ -6,6 +7,7 @@ export default function ProductList() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { state } = useAuth();
 
   const fetchProducts = async () => {
     try {
@@ -109,8 +111,8 @@ export default function ProductList() {
               product.is_sold ? 'opacity-60' : ''
             }`}
           >
-            {/* Product Image */}
-            <div className="aspect-w-16 aspect-h-9 bg-gray-200">
+            {/* Product Image with Overlay */}
+            <div className="aspect-w-16 aspect-h-9 bg-gray-200 relative">
               {product.image_urls && product.image_urls.length > 0 ? (
                 <img
                   src={product.image_urls[0]}
@@ -120,6 +122,13 @@ export default function ProductList() {
               ) : (
                 <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
                   <span className="text-gray-400">No image</span>
+                </div>
+              )}
+              
+              {/* "In your Hostel" overlay - now inside the image container */}
+              {state.user?.hostel && product.location === state.user.hostel && (
+                <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded shadow-md z-10">
+                  In your Hostel
                 </div>
               )}
             </div>
@@ -223,4 +232,4 @@ export default function ProductList() {
       </div>
     </div>
   );
-} 
+}

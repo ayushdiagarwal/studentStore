@@ -45,6 +45,7 @@ interface AuthContextType {
   login: () => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
+  updateUser: (partial: Partial<User>) => Promise<void>;
 }
 
 // Create context
@@ -138,11 +139,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  // Update user: persist to backend and storage
+  const updateUser = async (partial: Partial<User>) => {
+    try {
+      const updated = await authService.updateProfile(partial);
+      dispatch({ type: 'SET_USER', payload: updated });
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+
   const value: AuthContextType = {
     state,
     login,
     logout,
     refreshUser,
+    updateUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

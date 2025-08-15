@@ -7,6 +7,8 @@ class User(Document):
     email: Indexed(EmailStr, unique=True)
     name: str
     profile_picture: Optional[str] = None
+    gender: Optional[str] = None
+    hostel: Optional[str] = None
     oauth_provider: str = "google"  # For future extensibility
     oauth_id: Optional[str] = None
     is_active: bool = True

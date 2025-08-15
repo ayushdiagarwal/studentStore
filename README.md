@@ -74,11 +74,14 @@ app/
 
 ### �� **Authentication & User Management (HIGH PRIORITY)**
 - [ ] Implement user registration and login system
-- [ ] Add JWT token authentication
+- [x] Add JWT token authentication
 - [ ] Create user profiles with student verification
 - [ ] Add role-based access control (student, admin)
 
 ### 🛍️ **Product Management (MEDIUM PRIORITY)**
+- [ ] My listing section
+- [ ] My hostel section
+- [ ] Pagination / lazy-loading
 - [ ] Product search and filtering (by category, price, location, tags)
 - [ ] Allow user to add multiples images while uploading a product.
 - [ ] Product sorting (by date, price, popularity)

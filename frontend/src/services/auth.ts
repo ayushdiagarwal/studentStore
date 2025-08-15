@@ -101,6 +101,28 @@ export const authService = {
     }
   },
 
+  // Update and persist user profile locally (e.g., gender/hostel)
+  updateStoredUser(partial: Partial<User>): User | null {
+    const current = this.getStoredUser();
+    if (!current) {
+      return null;
+    }
+    const updated: User = { ...current, ...partial };
+    localStorage.setItem('user', JSON.stringify(updated));
+    return updated;
+  },
+
+  // Persist profile fields to backend and store returned user
+  async updateProfile(partial: Partial<User>): Promise<User> {
+    const payload: Partial<User> = {};
+    if (partial.gender !== undefined) payload.gender = partial.gender;
+    if (partial.hostel !== undefined) payload.hostel = partial.hostel;
+    const response = await authApi.patch<User>('/auth/me', payload);
+    const updated = response.data;
+    localStorage.setItem('user', JSON.stringify(updated));
+    return updated;
+  },
+
   // Check if user is authenticated
   isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token');

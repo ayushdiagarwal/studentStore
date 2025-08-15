@@ -3,6 +3,8 @@ export interface User {
   email: string;
   name: string;
   profile_picture?: string;
+  gender?: 'male' | 'female';
+  hostel?: string;
   is_verified: boolean;
   created_at: string;
 }

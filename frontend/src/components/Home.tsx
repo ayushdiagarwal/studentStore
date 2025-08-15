@@ -14,7 +14,7 @@ function Home() {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-4 relative">
             <h1 className="text-3xl font-bold text-gray-800">
               Student Store
             </h1>
