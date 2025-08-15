@@ -14,7 +14,7 @@ export default function ProductList() {
       setIsLoading(true);
       setError(null);
       const fetchedProducts = await getProducts();
-      setProducts(fetchedProducts);
+      setProducts(fetchedProducts.reverse());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch products');
     } finally {

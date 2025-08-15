@@ -10,6 +10,7 @@ const BOYS_HOSTELS = [
   'Hostel J',
   'Hostel H',
   'Hostel K',
+  'Day Scholar'
 ];
 
 const GIRLS_HOSTELS = [
@@ -20,6 +21,7 @@ const GIRLS_HOSTELS = [
   'Hostel PG',
   'Hostel FRF',
   'Hostel FRG',
+  'Day Scholar'
 ];
 
 const UserProfile: React.FC = () => {

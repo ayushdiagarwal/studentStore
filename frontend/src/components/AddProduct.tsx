@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import { createProduct } from '../services/products';
 import type { CreateProductData } from '../types/product';
 
 export default function AddProduct() {
-  const [formData, setFormData] = useState<Omit<CreateProductData, 'images'>>({
+  const { state } = useAuth();
+  const [formData, setFormData] = useState<Omit<CreateProductData, 'images' | 'location'>>({
     name: '',
     price: 0,
-    location: '',
     category: '',
     description: '',
   });
@@ -43,6 +44,7 @@ export default function AddProduct() {
 
       const productData: CreateProductData = {
         ...formData,
+        location: state.user?.hostel || '',
         images
       };
 
@@ -53,7 +55,6 @@ export default function AddProduct() {
       setFormData({
         name: '',
         price: 0,
-        location: '',
         category: '',
         description: '',
       });
@@ -70,9 +71,54 @@ export default function AddProduct() {
     }
   };
 
+  // Check if user has completed their profile
+  const hasCompletedProfile = state.user?.gender && state.user?.hostel;
+  
+  if (!hasCompletedProfile) {
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Complete Your Profile First</h2>
+        
+        <div className="mb-4 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
+          <p className="font-medium mb-2">Profile Incomplete</p>
+          <p className="text-sm">
+            You need to set your gender and hostel before adding products. 
+            Click on your profile in the header to complete your profile.
+          </p>
+        </div>
+        
+        <div className="text-center">
+          <p className="text-gray-600 mb-4">
+            Current Status:
+          </p>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span>Gender:</span>
+              <span className={state.user?.gender ? 'text-green-600 font-medium' : 'text-red-600'}>
+                {state.user?.gender || 'Not set'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span>Hostel:</span>
+              <span className={state.user?.hostel ? 'text-green-600 font-medium' : 'text-red-600'}>
+                {state.user?.hostel || 'Not set'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Product</h2>
+      
+      <div className="mb-4 p-3 bg-blue-100 border border-blue-400 text-blue-700 rounded">
+        <p className="text-sm">
+          <strong>Location:</strong> Your product will be listed in <strong>{state.user?.hostel}</strong>
+        </p>
+      </div>
       
       {error && (
         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
@@ -119,20 +165,7 @@ export default function AddProduct() {
           />
         </div>
 
-        <div>
-          <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
-            Location *
-          </label>
-          <input
-            type="text"
-            id="location"
-            name="location"
-            value={formData.location}
-            onChange={handleInputChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+
 
         <div>
           <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
