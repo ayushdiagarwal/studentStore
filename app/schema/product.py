@@ -1,5 +1,5 @@
 # app/schema/product.py
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 from typing import List, Optional
 from datetime import datetime
 
@@ -30,5 +30,11 @@ class ProductResponse(ProductBase):
     image_urls: List[str] = []
     is_sold: bool = False
 
-    class Config:
-        from_attributes = True
+    # Pydantic v2 config
+    model_config = ConfigDict(from_attributes=True)
+
+    # Ensure ObjectId or other types are cast to string for id
+    @field_validator('id', mode='before')
+    @classmethod
+    def _cast_id_to_str(cls, value):
+        return str(value) if value is not None else ""
