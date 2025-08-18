@@ -54,7 +54,7 @@ export default function ProductList() {
   if (error) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-200 px-4 py-3 rounded">
           <strong className="font-bold">Error: </strong>
           <span className="block sm:inline">{error}</span>
           <button
@@ -72,8 +72,8 @@ export default function ProductList() {
     return (
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="text-center py-12">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No products found</h3>
-          <p className="text-gray-500 mb-4">Be the first to add a product to the store!</p>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No products found</h3>
+          <p className="text-gray-500 dark:text-gray-400 mb-4">Be the first to add a product to the store!</p>
           <button
             onClick={fetchProducts}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200"
@@ -89,8 +89,8 @@ export default function ProductList() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="mb-8 flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">All Products</h2>
-          <p className="text-gray-600">Browse through all available products</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">All Products</h2>
+          <p className="text-gray-600 dark:text-gray-400">Browse through all available products</p>
         </div>
         <button
           onClick={fetchProducts}
@@ -107,7 +107,7 @@ export default function ProductList() {
         {products.map((product) => (
           <div
             key={product.id}
-            className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
+            className={`bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
               product.is_sold ? 'opacity-60' : ''
             }`}
           >
@@ -136,11 +136,11 @@ export default function ProductList() {
             {/* Product Info */}
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-900 truncate">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
                   {product.name}
                 </h3>
                 {product.is_sold && (
-                  <span className="bg-red-100 text-red-800 text-xs font-medium px-2 py-1 rounded">
+                  <span className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs font-medium px-2 py-1 rounded">
                     SOLD
                   </span>
                 )}
@@ -151,12 +151,12 @@ export default function ProductList() {
               </p>
 
               {product.description && (
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
                   {product.description}
                 </p>
               )}
 
-              <div className="space-y-2 text-sm text-gray-500">
+              <div className="space-y-2 text-sm text-gray-500 dark:text-gray-400">
                 <div className="flex items-center">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
@@ -184,14 +184,14 @@ export default function ProductList() {
                 <div className="mt-3 flex flex-wrap gap-1">
                   {product.tags.slice(0, 3).map((tag, index) => (
                     <span
-                      key={index}
-                      className="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                      key={`${product.id}-tag-${index}`}
+                      className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-2 py-1 rounded"
                     >
                       {tag}
                     </span>
                   ))}
                   {product.tags.length > 3 && (
-                    <span className="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">
+                    <span className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs px-2 py-1 rounded">
                       +{product.tags.length - 3} more
                     </span>
                   )}
@@ -227,7 +227,7 @@ export default function ProductList() {
       </div>
 
       {/* Product Count */}
-      <div className="mt-8 text-center text-gray-600">
+      <div className="mt-8 text-center text-gray-600 dark:text-gray-400">
         Showing {products.length} product{products.length !== 1 ? 's' : ''}
       </div>
     </div>

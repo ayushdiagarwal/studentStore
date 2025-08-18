@@ -1,22 +1,27 @@
 # app/models/product.py
 from beanie import Document
 from pydantic import Field
-from typing import List, Optional
-from uuid import UUID, uuid4
+from typing import List, Optional, Any
 from datetime import datetime
+from bson import ObjectId
 
 class Product(Document):
-    id: UUID = Field(default_factory=uuid4, alias="_id")
+    # Let Beanie handle the _id field automatically
     name: str
     description: Optional[str] = None
     price: float
     date_added: datetime = Field(default_factory=datetime.utcnow)
-    seller_id: UUID  # In a real app, this would be a Link to a User document
+    seller_id: str  # MongoDB ObjectId as string
     image_urls: List[str] = []
     location: str
     category: str
     tags: Optional[List[str]] = []
     is_sold: bool = False
+
+    # No conversion hooks needed; we now persist clean string IDs only
+
+    class Settings:
+        name = "products"
 
     model_config = {
         "json_schema_extra": {

@@ -10,16 +10,19 @@ app = FastAPI(title="Student Store API")
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    # allow_origins=[
-    #     "http://localhost:5173",  # Vite dev server
-    #     "http://localhost:3000",  # Alternative React dev server
-    #     "http://127.0.0.1:5173",  # Alternative localhost format
-    #     "http://127.0.0.1:3000",  # Alternative localhost format
-    # ],
+    allow_origins=[
+        "http://localhost:5173",  # Vite dev server
+        "http://localhost:3000",  # Alternative React dev server
+        "http://127.0.0.1:5173",  # Alternative localhost format
+        "http://127.0.0.1:3000",  # Alternative localhost format
+        "http://localhost:4173",  # Vite preview server
+        "http://localhost:8080",  # Alternative port
+    ],
+
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
+    expose_headers=["*"],  # Expose all headers
 )
 
 @app.get("/")

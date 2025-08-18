@@ -83,6 +83,7 @@ app/
 - [ ] My hostel section
 - [ ] Pagination / lazy-loading
 - [ ] Product search and filtering (by category, price, location, tags)
+- [ ] Allow user to delete a listing and also the image should be deleted from cloudinary.
 - [ ] Allow user to add multiples images while uploading a product.
 - [ ] Product sorting (by date, price, popularity)
 - [ ] Product favorites/wishlist functionality
@@ -90,6 +91,7 @@ app/
 - [ ] Product analytics (views, favorites, inquiries)
 
 ### 🔍 **Search & Discovery (MEDIUM PRIORITY)**
+- [ ] Seller can select to share their information with all users so they can directly contact them.
 - [ ] Advanced search with filters (price range, location radius, category)
 - [ ] fuzzy search
 - [ ] Search suggestions and autocomplete

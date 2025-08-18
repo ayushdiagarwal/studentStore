@@ -66,13 +66,13 @@ const UserProfile: React.FC = () => {
           </div>
         )}
         <div className="hidden md:block">
-          <p className="text-sm font-medium text-gray-900">{state.user.name}</p>
-          <p className="text-xs text-gray-500">{state.user.email}</p>
+          <p className="text-sm font-medium text-gray-900 dark:text-white">{state.user.name}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{state.user.email}</p>
         </div>
       </div>
 
       {open && (
-        <div className="absolute right-0 top-12 w-80 bg-white border rounded-lg shadow-lg p-4 z-50">
+        <div className="absolute right-0 top-12 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4 z-50">
           <div className="flex items-center space-x-3 mb-3">
             {state.user.profile_picture ? (
               <img
@@ -88,14 +88,14 @@ const UserProfile: React.FC = () => {
               </div>
             )}
             <div>
-              <p className="text-sm font-semibold text-gray-900">{state.user.name}</p>
-              <p className="text-xs text-gray-500">{state.user.email}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">{state.user.name}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{state.user.email}</p>
             </div>
           </div>
 
           <div className="space-y-3">
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Gender</label>
+              <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Gender</label>
               <div className="flex items-center space-x-4">
                 <label className="inline-flex items-center space-x-2 text-sm">
                   <input
@@ -123,9 +123,9 @@ const UserProfile: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Hostel</label>
+              <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Hostel</label>
               <select
-                className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={state.user.hostel || ''}
                 onChange={(e) => updateUser({ hostel: e.target.value })}
                 disabled={!state.user.gender}

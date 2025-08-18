@@ -1,7 +1,6 @@
 # app/schema/product.py
 from pydantic import BaseModel, Field
 from typing import List, Optional
-from uuid import UUID
 from datetime import datetime
 
 class ProductBase(BaseModel):
@@ -25,11 +24,11 @@ class ProductUpdate(BaseModel):
     is_sold: Optional[bool] = None
 
 class ProductResponse(ProductBase):
-    id: UUID
-    date_added: datetime
-    seller_id: UUID
-    image_urls: List[str]
-    is_sold: bool
+    id: str  # Changed from UUID to str
+    date_added: Optional[datetime] = None
+    seller_id: str  # Changed from UUID to str
+    image_urls: List[str] = []
+    is_sold: bool = False
 
     class Config:
         from_attributes = True

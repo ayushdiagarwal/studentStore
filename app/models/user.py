@@ -1,10 +1,10 @@
-from beanie import Document, Indexed
+from beanie import Document
 from typing import Optional
 from datetime import datetime
 from pydantic import EmailStr, Field
 
 class User(Document):
-    email: Indexed(EmailStr, unique=True)
+    email: EmailStr
     name: str
     profile_picture: Optional[str] = None
     gender: Optional[str] = None
@@ -20,7 +20,7 @@ class User(Document):
         name = "users"
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "email": "user@example.com",
                 "name": "John Doe",
